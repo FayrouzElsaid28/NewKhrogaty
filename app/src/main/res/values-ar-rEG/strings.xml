@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Khrogaty</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--OnBoarding-->
+    <string name="next">التالى \u003E</string>
+    <string name="prev">\u003C السابق</string>
+    <string name="start">ابدأ</string>
+    <string name="places_for_going_out">اماكن يمكنك الذهاب اليها</string>
+    <string name="restaurants_and_coffee">مطاعم وكافيهات</string>
+    <string name="what_do_i_do">ماذا افعل ؟</string>
+    <string name="onboarding_text">Loem is simply dummy text of the project until we find the original text</string>
+
+    <!--Home-->
+    <string name="home">الرئيسية</string>
+    <string name="search">البحث</string>
+    <string name="find_places">ابحث عن مكان</string>
+    <string name="restaurants">مطاعم</string>
+    <string name="things_to_do">اشياء افعلها</string>
+    <string name="view_more">المزيد</string>
+
+    <!--Search-->
+    <string name="search_here_by_place">ابحث بالمكان</string>
+    <string name="search_for_any_place">ابحث عن اى مكان</string>
+    <string name="no_items_found">لايوجد عناصر</string>
+
+    <!--Restaurants-->
+    <string name="rest_coffee">مطاعم / كافيهات</string>
+
+    <!--Category-->
+    <string name="details">تفاصيل</string>
+
+    <!--Details-->
+    <string name="more_info">المزيد من المعلومات</string>
+    <string name="leave_comment">اترك تعليق</string>
+    <string name="write_here">اكتب هنا</string>
+
+</resources>
