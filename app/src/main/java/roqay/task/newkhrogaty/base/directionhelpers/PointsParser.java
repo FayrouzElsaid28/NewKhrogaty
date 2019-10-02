@@ -11,8 +11,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import roqay.task.khrogaty.R;
 import roqay.task.newkhrogaty.base.helpers.Location;
 
 
@@ -77,12 +75,12 @@ public class PointsParser extends AsyncTask<String, Integer, List<List<HashMap<S
                 lineOptions.addAll(points);
                 if (directionMode.equalsIgnoreCase("walking")) {
                     lineOptions.width(10);
-                    lineOptions.color(Location.Companion.getLineColor());
+                    lineOptions.color(Location.INSTANCE.getLineColor());
                 } else {
                     lineOptions.width(10);
 
                     //TODO:: Change line to dotted line
-                    lineOptions.color(Location.Companion.getLineColor());
+                    lineOptions.color(Location.INSTANCE.getLineColor());
                 }
                 Log.d("mylog", "onPostExecute lineoptions decoded");
             }
