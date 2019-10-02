@@ -1,4 +1,4 @@
-package roqay.task.newkhrogaty.base.helpers
+package roqay.task.khrogaty.base.helpers
 
 import android.app.Activity
 import android.content.Context
