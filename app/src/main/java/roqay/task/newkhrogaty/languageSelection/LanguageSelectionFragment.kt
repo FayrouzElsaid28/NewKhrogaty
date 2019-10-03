@@ -1,4 +1,4 @@
-package roqay.task.newkhrogaty.view.splash.languageSelection
+package roqay.task.newkhrogaty.languageSelection
 
 
 import android.graphics.Color
@@ -14,10 +14,13 @@ import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.base.extensions.openActivtyFromParent
 import roqay.task.newkhrogaty.view.onboarding.OnBoardingActivity
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import android.content.Intent
+import android.R.id.edit
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 
-class LanguageSelectionFragment : DialogFragment() {
+
+
+class LanguageSelectionFragment : DialogFragment(), ILanguage {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,12 +28,10 @@ class LanguageSelectionFragment : DialogFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_language_selection, container, false)
-
         if (dialog != null && dialog?.window != null) {
             dialog?.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog?.window!!.requestFeature(Window.FEATURE_NO_TITLE)
         }
-
         return view
     }
 
@@ -41,14 +42,14 @@ class LanguageSelectionFragment : DialogFragment() {
         dialog?.setCanceledOnTouchOutside(false)
 
         arabic_btn.setOnClickListener {
-            openActivity("ar")
+            changeLanguage("ar")
         }
         english_btn.setOnClickListener {
-            openActivity("en")
+            changeLanguage("en")
         }
     }
 
-    private fun openActivity(language: String){
+    override fun changeLanguage(language: String) {
         getSharedPreferences().edit().putString("applicationLanguage",language).apply()
         openActivtyFromParent(OnBoardingActivity::class.java)
         activity?.finishAffinity()

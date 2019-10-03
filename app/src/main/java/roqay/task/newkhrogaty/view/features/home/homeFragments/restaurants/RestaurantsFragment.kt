@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_restaurants.*
 
 import roqay.task.newkhrogaty.R
 
@@ -22,5 +23,19 @@ class RestaurantsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_restaurants, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupViewPager()
+    }
+
+    private fun setupViewPager() {
+        restaurants_viewpager.adapter =
+            RestaurantsPagerAdapter(
+                childFragmentManager,
+                activity?.baseContext!!
+            )
+        restaurants_tablayout.setupWithViewPager(restaurants_viewpager)
+    }
 
 }

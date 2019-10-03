@@ -1,3 +1,4 @@
+
 package roqay.task.newkhrogaty.base.extensions
 
 import android.app.Activity
@@ -6,6 +7,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.widget.Toast
+import androidx.appcompat.widget.ViewUtils
+import androidx.core.text.TextUtilsCompat
 import java.util.*
 
 /**
@@ -37,6 +40,7 @@ fun setLocale(context: Context, lang: String) {
     Locale.setDefault(locale)
     val config = Configuration()
     config.setLocale(locale)
+    config.setLayoutDirection(locale)
     context.createConfigurationContext(config)
     val editor: SharedPreferences.Editor = context.getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
     editor.putString("Language", lang)

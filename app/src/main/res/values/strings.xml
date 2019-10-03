@@ -33,6 +33,8 @@
 
     <!--Restaurants-->
     <string name="rest_coffee">Rest / Coffees</string>
+    <string name="all">All</string>
+    <string name="coffeeShops">Coffee Shops</string>
 
     <!--Category-->
     <string name="details">Details</string>

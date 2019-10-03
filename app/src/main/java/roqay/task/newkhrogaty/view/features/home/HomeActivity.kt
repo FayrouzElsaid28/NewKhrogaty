@@ -1,35 +1,41 @@
 package roqay.task.newkhrogaty.view.features.home
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.INavigation
-import roqay.task.newkhrogaty.base.extensions.openActivity
-import roqay.task.newkhrogaty.view.features.settings.SettingsActivity
+import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
+import roqay.task.newkhrogaty.languageSelection.ILanguage
+import roqay.task.newkhrogaty.base.helpers.MyContextWrapper
+import android.preference.PreferenceManager
+import roqay.task.newkhrogaty.base.extensions.loadLocals
+import roqay.task.newkhrogaty.base.extensions.setLocale
 
-class HomeActivity : AppCompatActivity(), INavigation {
+
+class HomeActivity : AppCompatActivity(), INavigation, ILanguage {
 
     private var currentFragment = 0
+    private var language =  ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //setLanguage()
+        language = getSharedPreferences().getString(
+            "applicationLanguage",
+            ""
+        )!!
         setContentView(R.layout.activity_home)
 
         initView()
-        //TODO:: Settings icon
     }
 
     private fun initView() {
         home_viewpager.adapter =
-            HomePagerAdapter(supportFragmentManager)
+            HomePagerAdapter(supportFragmentManager, this)
         home_tablayout.setupWithViewPager(home_viewpager)
-
-        settings_img.setOnClickListener {
-            openActivity(this,SettingsActivity::class.java)
-        }
 
         handleViewPager()
         handleTabIcons()
@@ -109,5 +115,32 @@ class HomeActivity : AppCompatActivity(), INavigation {
                 home_tablayout.getTabAt(3)?.setIcon(R.drawable.restaurants)
             }
         }
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        //val lang = getSharedPreferences().getString("applicationLanguage", "")
+        super.attachBaseContext(
+            MyContextWrapper.wrap(
+                newBase,
+                "en"
+            )
+        )
+    }
+
+    /*private fun getMyContext(): Context {
+        return MyContextWrapper.wrap(
+            this, language
+        )
+    }*/
+
+    override fun setLanguage() {
+        loadLocals(baseContext)
+        setLocale(
+            baseContext,
+            getSharedPreferences().getString(
+                "applicationLanguage",
+                ""
+            )!!
+        )
     }
 }

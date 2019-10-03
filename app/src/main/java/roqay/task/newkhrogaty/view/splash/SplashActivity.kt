@@ -1,21 +1,13 @@
 package roqay.task.newkhrogaty.view.splash
 
-import android.app.Activity
-import android.content.Context
-import android.content.SharedPreferences
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import roqay.task.khrogaty.base.helpers.LaunchingActivity
 import roqay.task.newkhrogaty.R
-import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
-import roqay.task.newkhrogaty.base.extensions.loadLocals
 import roqay.task.newkhrogaty.base.extensions.openActivity
-import roqay.task.newkhrogaty.base.extensions.setLocale
 import roqay.task.newkhrogaty.view.features.home.HomeActivity
-import roqay.task.newkhrogaty.view.splash.languageSelection.LanguageSelectionFragment
-import java.util.*
+import roqay.task.newkhrogaty.languageSelection.LanguageSelectionFragment
 
 class SplashActivity : AppCompatActivity() {
 
@@ -24,6 +16,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         //TODO:: set language
+
         selectActivity()
     }
 
@@ -34,9 +27,6 @@ class SplashActivity : AppCompatActivity() {
                 LanguageSelectionFragment().show(supportFragmentManager,"")
             }
             else {
-                //get language
-                loadLocals(baseContext)
-
                 openActivity(this, HomeActivity::class.java)
                 finishAffinity()
             }
