@@ -1,5 +1,6 @@
 package roqay.task.newkhrogaty.base.helpers;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -14,6 +15,7 @@ public class MyContextWrapper extends ContextWrapper {
         super(base);
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     public static ContextWrapper wrap(Context context, String language) {
         Configuration config = context.getResources().getConfiguration();
         Locale sysLocale = null;

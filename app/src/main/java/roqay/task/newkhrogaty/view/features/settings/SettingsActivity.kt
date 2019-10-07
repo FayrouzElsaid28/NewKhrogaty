@@ -2,7 +2,6 @@ package roqay.task.newkhrogaty.view.features.settings
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.ViewUtils
 import kotlinx.android.synthetic.main.activity_settings.*
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.extensions.getSharedPreferences

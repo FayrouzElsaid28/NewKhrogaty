@@ -43,5 +43,7 @@
     <string name="more_info">More Information</string>
     <string name="leave_comment">Leave a comment</string>
     <string name="write_here">Write here</string>
+    <string name="about">About</string>
+    <string name="map">Map</string>
 
 </resources>

@@ -43,5 +43,7 @@
     <string name="more_info">المزيد من المعلومات</string>
     <string name="leave_comment">اترك تعليق</string>
     <string name="write_here">اكتب هنا</string>
+    <string name="about">تفاصيل</string>
+    <string name="map">الخريطة</string>
 
 </resources>
