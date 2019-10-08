@@ -1,6 +1,7 @@
 package roqay.task.newkhrogaty.view.features.details
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.custom_tab.view.*
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.INavigation
+import roqay.task.newkhrogaty.base.extensions.changeLang
+import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.view.features.details.fragments.IDetails
 import roqay.task.newkhrogaty.view.features.home.homeFragments.Category
 
@@ -96,5 +99,11 @@ class DetailsActivity : AppCompatActivity(),
 
     override fun getDetails() {
         details_name.text = Category.details_name
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val lang = getSharedPreferences(newBase).getString("applicationLanguage", "")
+        val context = changeLang(newBase, lang!!)
+        super.attachBaseContext( context )
     }
 }

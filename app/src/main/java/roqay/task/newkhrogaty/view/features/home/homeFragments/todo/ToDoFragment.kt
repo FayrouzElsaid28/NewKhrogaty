@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_to_do.*
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.AdapterToViewCallBack
 import roqay.task.newkhrogaty.base.extensions.makeLongToast
-import roqay.task.newkhrogaty.base.extensions.openActivtyFromParent
+import roqay.task.newkhrogaty.base.extensions.openActivityFromParent
 import roqay.task.newkhrogaty.view.features.details.DetailsActivity
 import roqay.task.newkhrogaty.view.features.home.homeFragments.Category
 import roqay.task.newkhrogaty.view.features.home.homeFragments.ICategory
@@ -53,7 +53,7 @@ class ToDoFragment : Fragment(),
     }
 
     override fun openActivity() {
-        openActivtyFromParent(DetailsActivity::class.java)
+        openActivityFromParent(DetailsActivity::class.java)
     }
 
 }

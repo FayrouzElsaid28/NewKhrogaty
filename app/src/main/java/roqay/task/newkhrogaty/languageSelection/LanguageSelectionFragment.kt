@@ -12,12 +12,8 @@ import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.fragment_language_selection.*
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
-import roqay.task.newkhrogaty.base.extensions.openActivtyFromParent
+import roqay.task.newkhrogaty.base.extensions.openActivityFromParent
 import roqay.task.newkhrogaty.view.onboarding.OnBoardingActivity
-import android.R.id.edit
-import android.content.SharedPreferences
-import android.preference.PreferenceManager
-
 
 
 class LanguageSelectionFragment : DialogFragment(), ILanguage {
@@ -50,11 +46,9 @@ class LanguageSelectionFragment : DialogFragment(), ILanguage {
     }
 
     override fun changeLanguage(language: String) {
-        getSharedPreferences().edit().putString("applicationLanguage",language).apply()
-        openActivtyFromParent(OnBoardingActivity::class.java)
+        getSharedPreferences(activity?.applicationContext!!).edit().putString("applicationLanguage",language).apply()
+        openActivityFromParent(OnBoardingActivity::class.java)
         activity?.finishAffinity()
-
-        //TODO:: Send broadcast with language
     }
 
 }

@@ -17,7 +17,7 @@ public class MyContextWrapper extends ContextWrapper {
 
     @SuppressLint("ObsoleteSdkInt")
     public static ContextWrapper wrap(Context context, String language) {
-        Configuration config = context.getResources().getConfiguration();
+        /*Configuration config = context.getResources().getConfiguration();
         Locale sysLocale = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             sysLocale = getSystemLocale(config);
@@ -37,7 +37,7 @@ public class MyContextWrapper extends ContextWrapper {
             context = context.createConfigurationContext(config);
         } else {
             context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
-        }
+        }*/
         return new MyContextWrapper(context);
     }
 

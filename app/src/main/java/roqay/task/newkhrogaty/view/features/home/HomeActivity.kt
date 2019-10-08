@@ -8,11 +8,12 @@ import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_home.*
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.INavigation
+import roqay.task.newkhrogaty.base.extensions.changeLang
 import roqay.task.newkhrogaty.base.extensions.getCurrentLocation
 import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.languageSelection.ILanguage
-import roqay.task.newkhrogaty.base.extensions.loadLocals
-import roqay.task.newkhrogaty.base.extensions.setLocale
+import androidx.preference.PreferenceManager
+
 
 
 class HomeActivity : AppCompatActivity(), INavigation, ILanguage {
@@ -22,13 +23,13 @@ class HomeActivity : AppCompatActivity(), INavigation, ILanguage {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setLanguage()
         setContentView(R.layout.activity_home)
 
         initView()
     }
 
     private fun initView() {
+       // updateView()
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
         home_viewpager.adapter =
             HomePagerAdapter(supportFragmentManager, this)
@@ -115,19 +116,20 @@ class HomeActivity : AppCompatActivity(), INavigation, ILanguage {
         }
     }
 
-    /*override fun attachBaseContext(newBase: Context) {
-        val lang = getSharedPreferences().getString("applicationLanguage", "")
-        super.attachBaseContext( baseContext )
-    }*/
+    override fun attachBaseContext(newBase: Context) {
+        val lang = getSharedPreferences(newBase).getString("applicationLanguage", "")
+        val context = changeLang(newBase, lang!!)
+        super.attachBaseContext( context )
+    }
 
-    override fun setLanguage() {
-        loadLocals(baseContext)
-        setLocale(
-            baseContext,
-            getSharedPreferences().getString(
-                "applicationLanguage",
-                ""
-            )!!
-        )
+    override fun updateView() {
+        when (getSharedPreferences(applicationContext).getString("applicationLanguage", "")) {
+            "ar" -> {
+                home_viewpager.rotationY = 180f
+            }
+            "en" -> {
+                home_viewpager.rotationY = 0f
+            }
+        }
     }
 }

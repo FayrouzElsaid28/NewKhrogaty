@@ -9,10 +9,7 @@ import kotlinx.android.synthetic.main.activity_on_boarding.*
 import roqay.task.khrogaty.base.helpers.LaunchingActivity
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.INavigation
-import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
-import roqay.task.newkhrogaty.base.extensions.loadLocals
-import roqay.task.newkhrogaty.base.extensions.openActivity
-import roqay.task.newkhrogaty.base.extensions.setLocale
+import roqay.task.newkhrogaty.base.extensions.*
 import roqay.task.newkhrogaty.languageSelection.ILanguage
 import roqay.task.newkhrogaty.view.features.home.HomeActivity
 
@@ -22,7 +19,6 @@ class OnBoardingActivity : AppCompatActivity(), INavigation, ILanguage {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setLanguage()
         setContentView(R.layout.activity_on_boarding)
 
         /*
@@ -71,34 +67,28 @@ class OnBoardingActivity : AppCompatActivity(), INavigation, ILanguage {
     }
 
     override fun handleNavView(id: Int) {
-        if (currentFragment == 0){
-            prev_tv.visibility = View.GONE
-            start_tv.visibility = View.GONE
-            next_tv.visibility = View.VISIBLE
-        }
-        else if (currentFragment == 1){
-            prev_tv.visibility = View.VISIBLE
-            start_tv.visibility = View.GONE
-            next_tv.visibility = View.VISIBLE
-        }else{
-            prev_tv.visibility = View.VISIBLE
-            start_tv.visibility = View.VISIBLE
-            next_tv.visibility = View.GONE
+        when (currentFragment) {
+            0 -> {
+                prev_tv.visibility = View.GONE
+                start_tv.visibility = View.GONE
+                next_tv.visibility = View.VISIBLE
+            }
+            1 -> {
+                prev_tv.visibility = View.VISIBLE
+                start_tv.visibility = View.GONE
+                next_tv.visibility = View.VISIBLE
+            }
+            else -> {
+                prev_tv.visibility = View.VISIBLE
+                start_tv.visibility = View.VISIBLE
+                next_tv.visibility = View.GONE
+            }
         }
     }
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(newBase)
-    }
-
-    override fun setLanguage() {
-        loadLocals(baseContext)
-        setLocale(
-            baseContext,
-            getSharedPreferences().getString(
-                "applicationLanguage",
-                ""
-            )!!
-        )
+    override fun attachBaseContext(newBase: Context) {
+        val lang = getSharedPreferences(newBase).getString("applicationLanguage", "")
+        val context = changeLang(newBase, lang!!)
+        super.attachBaseContext( context )
     }
 }

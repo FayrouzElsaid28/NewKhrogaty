@@ -18,7 +18,7 @@ import roqay.task.newkhrogaty.view.features.home.homeFragments.home.Adapters.ToD
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.AdapterToViewCallBack
 import roqay.task.newkhrogaty.base.extensions.makeLongToast
-import roqay.task.newkhrogaty.base.extensions.openActivtyFromParent
+import roqay.task.newkhrogaty.base.extensions.openActivityFromParent
 import roqay.task.newkhrogaty.base.helpers.Resource
 import roqay.task.newkhrogaty.view.features.details.DetailsActivity
 import roqay.task.newkhrogaty.view.features.home.HomeViewModel
@@ -143,7 +143,7 @@ class HomeFragment : Fragment(), AdapterToViewCallBack, ICategory {
         todo_recyclerview.adapter = toDoAdapter
 
         settings_img.setOnClickListener {
-            openActivtyFromParent(SettingsActivity::class.java)
+            openActivityFromParent(SettingsActivity::class.java)
         }
 
         places_for_going_out_view_more_tv.setOnClickListener {
@@ -162,7 +162,7 @@ class HomeFragment : Fragment(), AdapterToViewCallBack, ICategory {
     }
 
     override fun openActivity() {
-        openActivtyFromParent(DetailsActivity::class.java)
+        openActivityFromParent(DetailsActivity::class.java)
     }
 
 }
