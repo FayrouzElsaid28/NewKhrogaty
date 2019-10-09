@@ -15,18 +15,21 @@ import kotlinx.android.synthetic.main.fragment_search.*
 
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.AdapterToViewCallBack
+import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.base.extensions.makeLongToast
 import roqay.task.newkhrogaty.base.extensions.openActivityFromParent
 import roqay.task.newkhrogaty.view.features.details.DetailsActivity
 import roqay.task.newkhrogaty.view.features.home.homeFragments.Category
 import roqay.task.newkhrogaty.view.features.home.homeFragments.ICategory
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 
 /**
  * A simple [Fragment] subclass.
  */
 class SearchFragment : Fragment(),
     AdapterToViewCallBack,
-    ICategory {
+    ICategory,
+    ILanguage{
 
     private val searchAdapter = SearchAdapter(this,this)
 
@@ -40,6 +43,7 @@ class SearchFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        updateView()
 
         nosearch_icon.setOnClickListener {
             if (search_et.text.trim().isNotEmpty())
@@ -197,5 +201,14 @@ class SearchFragment : Fragment(),
         openActivityFromParent(DetailsActivity::class.java)
     }
 
-
+    override fun updateView() {
+        when (getSharedPreferences(activity?.applicationContext!!).getString("applicationLanguage", "")) {
+            "ar" -> {
+                content.rotationY = 180f
+            }
+            "en" -> {
+                content.rotationY = 0f
+            }
+        }
+    }
 }

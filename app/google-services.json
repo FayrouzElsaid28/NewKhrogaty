@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "967398199069",
+    "firebase_url": "https://newkhrogaty.firebaseio.com",
+    "project_id": "newkhrogaty",
+    "storage_bucket": "newkhrogaty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967398199069:android:aaa759978495f6386bdbf4",
+        "android_client_info": {
+          "package_name": "roqay.task.newkhrogaty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967398199069-id68b2jpi3kv19d3gfh0g9ee68m9tc2k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "roqay.task.newkhrogaty",
+            "certificate_hash": "dcc46210ffea3f71163e13b1b0db1663f1f893da"
+          }
+        },
+        {
+          "client_id": "967398199069-2hm2od8sg510f9sd119me089akl6cb70.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoQsNNFy1CaYeg69zqLNPBGHA5JXLjjh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967398199069-2hm2od8sg510f9sd119me089akl6cb70.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

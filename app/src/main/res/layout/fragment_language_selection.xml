@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:background="@drawable/select_language_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".languageSelection.LanguageSelectionFragment">
+    tools:context=".view.features.languageSelection.LanguageSelectionFragment">
 
     <TextView
         android:id="@+id/select_language_tv"

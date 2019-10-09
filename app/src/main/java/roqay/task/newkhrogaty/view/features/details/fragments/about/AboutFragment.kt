@@ -14,14 +14,16 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_about.*
 
 import roqay.task.newkhrogaty.R
+import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.base.extensions.makeLongToast
 import roqay.task.newkhrogaty.base.helpers.Resource
 import roqay.task.newkhrogaty.view.features.details.DetailsViewModel
 import roqay.task.newkhrogaty.view.features.details.fragments.Details
 import roqay.task.newkhrogaty.view.features.details.fragments.IDetails
 import roqay.task.newkhrogaty.view.features.home.homeFragments.Category
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 
-class AboutFragment : Fragment(), IDetails {
+class AboutFragment : Fragment(), IDetails, ILanguage {
 
     private val commentAdapter = CommentAdapter()
 
@@ -41,6 +43,7 @@ class AboutFragment : Fragment(), IDetails {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+        updateView()
         getDetails()
     }
 
@@ -123,6 +126,19 @@ class AboutFragment : Fragment(), IDetails {
 
                 }
             })
+    }
+
+    override fun updateView() {
+        when (getSharedPreferences(activity?.applicationContext!!).getString("applicationLanguage", "")) {
+            "ar" -> {
+                content.rotationY = 180f
+                send_comment_img.scaleX = -1f
+            }
+            "en" -> {
+                content.rotationY = 0f
+                send_comment_img.scaleX = 1f
+            }
+        }
     }
 
 }

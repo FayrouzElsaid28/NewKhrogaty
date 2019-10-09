@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.crashlytics.android.Crashlytics
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import roqay.task.newkhrogaty.view.features.home.homeFragments.home.Adapters.PlaceAdapter
@@ -17,6 +18,7 @@ import roqay.task.newkhrogaty.view.features.home.homeFragments.home.Adapters.Res
 import roqay.task.newkhrogaty.view.features.home.homeFragments.home.Adapters.ToDoAdapter
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.AdapterToViewCallBack
+import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.base.extensions.makeLongToast
 import roqay.task.newkhrogaty.base.extensions.openActivityFromParent
 import roqay.task.newkhrogaty.base.helpers.Resource
@@ -24,9 +26,10 @@ import roqay.task.newkhrogaty.view.features.details.DetailsActivity
 import roqay.task.newkhrogaty.view.features.home.HomeViewModel
 import roqay.task.newkhrogaty.view.features.home.homeFragments.Category
 import roqay.task.newkhrogaty.view.features.home.homeFragments.ICategory
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 import roqay.task.newkhrogaty.view.features.settings.SettingsActivity
 
-class HomeFragment : Fragment(), AdapterToViewCallBack, ICategory {
+class HomeFragment : Fragment(), AdapterToViewCallBack, ICategory, ILanguage {
 
     private val placesAdapter = PlaceAdapter(this, this)
     private val restaurantsAdapter = RestaurantAdapter(this,this)
@@ -49,6 +52,7 @@ class HomeFragment : Fragment(), AdapterToViewCallBack, ICategory {
 
         initViewModel()
         initView()
+        updateView()
     }
 
     private fun initViewModel() {
@@ -155,6 +159,9 @@ class HomeFragment : Fragment(), AdapterToViewCallBack, ICategory {
         todo_view_more_tv.setOnClickListener {
             activity?.home_viewpager?.currentItem = 4
         }
+        crash_img.setOnClickListener {
+            Crashlytics.getInstance().crash()
+        }
     }
 
     override fun getContext(): Context {
@@ -163,6 +170,17 @@ class HomeFragment : Fragment(), AdapterToViewCallBack, ICategory {
 
     override fun openActivity() {
         openActivityFromParent(DetailsActivity::class.java)
+    }
+
+    override fun updateView() {
+        when (getSharedPreferences(activity?.applicationContext!!).getString("applicationLanguage", "")) {
+            "ar" -> {
+                content.rotationY = 180f
+            }
+            "en" -> {
+                content.rotationY = 0f
+            }
+        }
     }
 
 }

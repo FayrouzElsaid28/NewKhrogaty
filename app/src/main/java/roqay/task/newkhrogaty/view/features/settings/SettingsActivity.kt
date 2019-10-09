@@ -9,7 +9,7 @@ import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.extensions.changeLang
 import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.base.extensions.openActivity
-import roqay.task.newkhrogaty.languageSelection.ILanguage
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 import roqay.task.newkhrogaty.view.splash.SplashActivity
 
 

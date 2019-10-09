@@ -10,7 +10,7 @@ import roqay.task.khrogaty.base.helpers.LaunchingActivity
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.INavigation
 import roqay.task.newkhrogaty.base.extensions.*
-import roqay.task.newkhrogaty.languageSelection.ILanguage
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 import roqay.task.newkhrogaty.view.features.home.HomeActivity
 
 class OnBoardingActivity : AppCompatActivity(), INavigation, ILanguage {
@@ -32,6 +32,7 @@ class OnBoardingActivity : AppCompatActivity(), INavigation, ILanguage {
         onboarding_viewpager.adapter = OnBoardingPagerAdapter(supportFragmentManager)
         handleViewPager()
         handleNavigation()
+        updateView()
     }
 
     override fun handleNavigation() {
@@ -90,5 +91,16 @@ class OnBoardingActivity : AppCompatActivity(), INavigation, ILanguage {
         val lang = getSharedPreferences(newBase).getString("applicationLanguage", "")
         val context = changeLang(newBase, lang!!)
         super.attachBaseContext( context )
+    }
+
+    override fun updateView() {
+        when (getSharedPreferences(applicationContext).getString("applicationLanguage", "")) {
+            "ar" -> {
+                onboarding_viewpager.rotationY = 180f
+            }
+            "en" -> {
+                onboarding_viewpager    .rotationY = 0f
+            }
+        }
     }
 }

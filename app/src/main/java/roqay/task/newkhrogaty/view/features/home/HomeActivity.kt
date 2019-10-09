@@ -11,10 +11,7 @@ import roqay.task.newkhrogaty.base.INavigation
 import roqay.task.newkhrogaty.base.extensions.changeLang
 import roqay.task.newkhrogaty.base.extensions.getCurrentLocation
 import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
-import roqay.task.newkhrogaty.languageSelection.ILanguage
-import androidx.preference.PreferenceManager
-
-
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 
 class HomeActivity : AppCompatActivity(), INavigation, ILanguage {
 
@@ -29,7 +26,7 @@ class HomeActivity : AppCompatActivity(), INavigation, ILanguage {
     }
 
     private fun initView() {
-       // updateView()
+        updateView()
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
         home_viewpager.adapter =
             HomePagerAdapter(supportFragmentManager, this)

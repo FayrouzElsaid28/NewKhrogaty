@@ -14,14 +14,17 @@ import kotlinx.android.synthetic.main.fragment_map.*
 
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.extensions.getCategoryLatLng
+import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.base.helpers.Location
 import roqay.task.newkhrogaty.base.helpers.Location.mMap
 import roqay.task.newkhrogaty.view.features.details.fragments.IDetails
 import roqay.task.newkhrogaty.view.features.home.homeFragments.Category
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 
 class MapFragment : Fragment(),
     OnMapReadyCallback,
-    IDetails {
+    IDetails,
+    ILanguage{
 
     private val currentLatLng = LatLng(Location.latitude, Location.longitude)
     private var categoryLatLng: LatLng? = null
@@ -39,6 +42,7 @@ class MapFragment : Fragment(),
 
         getDetails()
         initMap()
+        updateView()
     }
 
     override fun getDetails() {
@@ -61,5 +65,16 @@ class MapFragment : Fragment(),
         mMap?.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng))
         mMap?.animateCamera(CameraUpdateFactory.zoomTo(10f))
         mMap?.uiSettings?.isZoomControlsEnabled = true
+    }
+
+    override fun updateView() {
+        when (getSharedPreferences(activity?.applicationContext!!).getString("applicationLanguage", "")) {
+            "ar" -> {
+                content.rotationY = 180f
+            }
+            "en" -> {
+                content.rotationY = 0f
+            }
+        }
     }
 }

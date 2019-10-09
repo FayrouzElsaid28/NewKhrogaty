@@ -12,15 +12,18 @@ import kotlinx.android.synthetic.main.fragment_to_do.*
 
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.AdapterToViewCallBack
+import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.base.extensions.makeLongToast
 import roqay.task.newkhrogaty.base.extensions.openActivityFromParent
 import roqay.task.newkhrogaty.view.features.details.DetailsActivity
 import roqay.task.newkhrogaty.view.features.home.homeFragments.Category
 import roqay.task.newkhrogaty.view.features.home.homeFragments.ICategory
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 
 class ToDoFragment : Fragment(),
     AdapterToViewCallBack,
-    ICategory {
+    ICategory,
+    ILanguage{
 
     private val toDoAdapter =
         ToDoDetailsAdapter(this, this)
@@ -39,6 +42,7 @@ class ToDoFragment : Fragment(),
         things_to_to_recyclerview.layoutManager = LinearLayoutManager(context)
         things_to_to_recyclerview.adapter = toDoAdapter
         getActivities()
+        updateView()
     }
 
     private fun getActivities() {
@@ -56,4 +60,14 @@ class ToDoFragment : Fragment(),
         openActivityFromParent(DetailsActivity::class.java)
     }
 
+    override fun updateView() {
+        when (getSharedPreferences(activity?.applicationContext!!).getString("applicationLanguage", "")) {
+            "ar" -> {
+                content.rotationY = 180f
+            }
+            "en" -> {
+                content.rotationY = 0f
+            }
+        }
+    }
 }

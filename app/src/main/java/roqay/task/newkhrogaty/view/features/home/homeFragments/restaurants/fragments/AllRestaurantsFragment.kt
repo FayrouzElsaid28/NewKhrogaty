@@ -12,17 +12,20 @@ import kotlinx.android.synthetic.main.fragment_all_restaurants.*
 
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.AdapterToViewCallBack
+import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.base.extensions.makeLongToast
 import roqay.task.newkhrogaty.base.extensions.openActivityFromParent
 import roqay.task.newkhrogaty.view.features.details.DetailsActivity
 import roqay.task.newkhrogaty.view.features.home.homeFragments.Category
 import roqay.task.newkhrogaty.view.features.home.homeFragments.ICategory
 import roqay.task.newkhrogaty.view.features.home.homeFragments.restaurants.RestaurantsDetailsAdapter
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 
 
 class AllRestaurantsFragment : Fragment(),
     AdapterToViewCallBack,
-    ICategory {
+    ICategory,
+    ILanguage{
 
     private val restaurantAdapter =
         RestaurantsDetailsAdapter(this,this)
@@ -41,6 +44,7 @@ class AllRestaurantsFragment : Fragment(),
         all_restaurants_recyclerview.layoutManager = LinearLayoutManager(context)
         all_restaurants_recyclerview.adapter = restaurantAdapter
         getAllRestaurants()
+        updateView()
 
     }
 
@@ -57,6 +61,17 @@ class AllRestaurantsFragment : Fragment(),
 
     override fun openActivity() {
         openActivityFromParent(DetailsActivity::class.java)
+    }
+
+    override fun updateView() {
+        when (getSharedPreferences(activity?.applicationContext!!).getString("applicationLanguage", "")) {
+            "ar" -> {
+                content.rotationY = 180f
+            }
+            "en" -> {
+                content.rotationY = 0f
+            }
+        }
     }
 
 }

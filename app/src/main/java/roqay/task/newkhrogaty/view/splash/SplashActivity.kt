@@ -7,7 +7,7 @@ import roqay.task.khrogaty.base.helpers.LaunchingActivity
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.extensions.openActivity
 import roqay.task.newkhrogaty.view.features.home.HomeActivity
-import roqay.task.newkhrogaty.languageSelection.LanguageSelectionFragment
+import roqay.task.newkhrogaty.view.features.languageSelection.LanguageSelectionFragment
 
 class SplashActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package roqay.task.newkhrogaty.languageSelection
+package roqay.task.newkhrogaty.view.features.languageSelection
 
 
 import android.graphics.Color

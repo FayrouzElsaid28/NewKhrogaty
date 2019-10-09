@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.fragment_restaurants.*
 
 import roqay.task.newkhrogaty.R
 import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
-import roqay.task.newkhrogaty.languageSelection.ILanguage
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 
 class RestaurantsFragment : Fragment(), ILanguage {
 
@@ -26,7 +26,7 @@ class RestaurantsFragment : Fragment(), ILanguage {
         super.onViewCreated(view, savedInstanceState)
 
         setupViewPager()
-        //updateView()
+        updateView()
     }
 
     private fun setupViewPager() {
@@ -39,12 +39,13 @@ class RestaurantsFragment : Fragment(), ILanguage {
     }
 
     override fun updateView() {
-        when (getSharedPreferences(activity?.applicationContext!!)
-            .getString("applicationLanguage", "")) {
+        when (getSharedPreferences(activity?.applicationContext!!).getString("applicationLanguage", "")) {
             "ar" -> {
+                content.rotationY = 180f
                 restaurants_viewpager.rotationY = 180f
             }
             "en" -> {
+                content.rotationY = 0f
                 restaurants_viewpager.rotationY = 0f
             }
         }

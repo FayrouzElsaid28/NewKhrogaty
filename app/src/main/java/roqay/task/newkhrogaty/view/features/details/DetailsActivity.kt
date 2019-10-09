@@ -16,10 +16,12 @@ import roqay.task.newkhrogaty.base.extensions.changeLang
 import roqay.task.newkhrogaty.base.extensions.getSharedPreferences
 import roqay.task.newkhrogaty.view.features.details.fragments.IDetails
 import roqay.task.newkhrogaty.view.features.home.homeFragments.Category
+import roqay.task.newkhrogaty.view.features.languageSelection.ILanguage
 
 class DetailsActivity : AppCompatActivity(),
     IDetails,
-    INavigation {
+    INavigation,
+    ILanguage{
 
     private var currentFragment = 0
     private var firstTab: ConstraintLayout? = null
@@ -32,6 +34,7 @@ class DetailsActivity : AppCompatActivity(),
         setContentView(R.layout.activity_details)
 
         initView()
+        updateView()
     }
 
     private fun initView() {
@@ -105,5 +108,18 @@ class DetailsActivity : AppCompatActivity(),
         val lang = getSharedPreferences(newBase).getString("applicationLanguage", "")
         val context = changeLang(newBase, lang!!)
         super.attachBaseContext( context )
+    }
+
+    override fun updateView() {
+        when (getSharedPreferences(applicationContext).getString("applicationLanguage", "")) {
+            "ar" -> {
+                details_back.scaleX = -1f
+                details_viewpager.rotationY = 180f
+            }
+            "en" -> {
+                details_back.scaleX = 1f
+                details_viewpager.rotationY = 0f
+            }
+        }
     }
 }
